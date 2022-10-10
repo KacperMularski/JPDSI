@@ -62,8 +62,9 @@ public class CreditBB {
 			double x = Double.parseDouble(this.x);
 			double y = Double.parseDouble(this.y);
 			double z = Double.parseDouble(this.z);
-
-			result = (x / (y/12))*(z/100);
+			
+			double w = (x / (y*12));
+			result = w + (w*(z/100));
 
 			ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Operacja wykonana poprawnie", null));
 			return true;
