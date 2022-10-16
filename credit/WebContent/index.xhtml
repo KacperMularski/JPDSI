@@ -3,27 +3,50 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://xmlns.jcp.org/jsf/core">
+	
 <h:head>
 	<title>Kalkulator Kredytowy</title>
 </h:head>
 <h:body>
-
-	<h1>Kalkulator kredytowy</h1>
+	<p:panel header="Kalkulator kredytowy" toggleable="true" closable="true" toggleSpeed="500"
+                closeSpeed="500" widgetVar="panel">
 
 	<h:form id="bla">
-  		Kwota: <h:inputText value="#{creditBB.x}" />
-		<br /><br />
-  		Lata kredytu: <h:inputText value="#{creditBB.y}" />
-		<br /><br />
-		Oprocentowanie: <h:inputText value="#{creditBB.z}" />
-		<br /><br />
+	
+		<h:panelGrid id="grid" columns="3" cellpadding="7">
 		
-		<h:messages id="msg" />
-
-		<h:commandButton value="Dodaj" action="#{creditBB.calc()}"/>
-		
+			<p:outputLabel for="x" value="Kwota:"/>
+	  		<p:inputText id="x" value="#{creditBB.x}" required="true" requiredMessage="Brak kwoty"/>
+	  		<p:message for="x"/>
+	  		
+			<p:outputLabel for="y" value="Lata kredytu:"/>
+	  		<p:inputText id="y" value="#{creditBB.y}" required="true" requiredMessage="Brak lat kredytu" />
+	  		<p:message for="y"/>
+	  		
+			<p:outputLabel for="z" value="Oprocentowanie:"/>
+			<p:inputText id="z" value="#{creditBB.z}" required="true" requiredMessage="Brak oprocentowania"/>
+			<p:message for="z"/>
+			
+			<p:commandButton value="Oblicz" action="#{creditBB.calc()}" update="@form"/>
+			<p:commandButton value="Dodaj (AJAX)" action="#{creditBB.calc_AJAX()}" update="msg"/>
+		</h:panelGrid>
+		<p:messages id="msg" closable="true"/>		
 	</h:form>
-
+	
+	<h:form>
+		<p:commandLink id="nonAjax" action="#{creditBB.info()}" class="mr-4" ajax="false"
+                       value="Strona informacyjna"/>
+	</h:form>
+			
+			
+			
+		
+		
+		
+		
+	
+    </p:panel>
 </h:body>
 </html>
