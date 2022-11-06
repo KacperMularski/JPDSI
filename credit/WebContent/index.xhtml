@@ -6,65 +6,65 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://xmlns.jcp.org/jsf/core">
 	
-<h:head>
-	<title>Kalkulator Kredytowy</title>
-</h:head>
-<h:body>
-	<p:panel header="Kalkulator kredytowy" toggleable="true" closable="true" toggleSpeed="500"
+<ui:composition template="/templates/main-template.xhtml">
+
+	<ui:define name="title">
+		Credit - Main page
+	</ui:define>
+
+	<ui:define name="content">
+	
+	<p:panel header="Wprowadź dane" toggleable="true" closable="true" toggleSpeed="500"
                 closeSpeed="500" widgetVar="panel">
 
 	<h:form id="bla">
 	
 		<h:panelGrid id="grid" columns="3" cellpadding="7">
 		
-			<p:outputLabel for="x" value="Kwota:"/>
-	  		<p:inputText id="x" value="#{creditBB.x}" 
-	  			required="true" 
-	  			requiredMessage="Brak kwoty"
-	  			converterMessage="Kwota musi być liczbą" 
-	  			validatorMessage="Minimalna kwota to 1000zł" >
-	  		 	<f:validateDoubleRange minimum="1000" />
-	  		</p:inputText>	
-	  		<p:message for="x"/>
-	  		
-			<p:outputLabel for="y" value="Lata kredytu:"/>
-	  		<p:inputText id="y" value="#{creditBB.y}" 
-	  			required="true" 
-	  			requiredMessage="Brak lat kredytu" 
-	  			converterMessage="Lata kredytu muszą być liczbą całkowitą" 
-	  			validatorMessage="Lata kredytu w przedziale od 1 - 25" >
-	  		 	<f:validateLongRange minimum="1" maximum="25" />
-	  		</p:inputText>
-	  		<p:message for="y"/>
-	  		
-			<p:outputLabel for="z" value="Oprocentowanie:"/>
-			<p:inputText id="z" value="#{creditBB.z}" 
-				required="true" 
-				requiredMessage="Brak oprocentowania"
-				converterMessage="Oprocentowanie musi być liczbą całkowitą" 
-	  			validatorMessage="Oprocentowanie w przedziale od 1 - 100" >
-	  		 	<f:validateLongRange minimum="1" maximum="100"  />
-	  		</p:inputText>
-			<p:message for="z"/>
-			
-			<p:commandButton value="Oblicz" action="#{creditBB.calc()}" update="@form"/>
-			<p:commandButton value="Dodaj (AJAX)" action="#{creditBB.calc_AJAX()}" update="msg"/>
-		</h:panelGrid>
-		<p:messages id="msg" closable="true"/>		
-	</h:form>
-	
-	<h:form>
-		<p:commandLink id="nonAjax" action="#{creditBB.info()}" class="mr-4" ajax="false"
-                       value="Strona informacyjna"/>
-	</h:form>
-			
-			
-			
+				<p:outputLabel for="x" value="Kwota:"/>
+		  		<p:inputText id="x" value="#{creditBB.x}" 
+		  			required="true" 
+		  			requiredMessage="Brak kwoty"
+		  			converterMessage="Kwota musi być liczbą" 
+		  			validatorMessage="Minimalna kwota to 1000zł" >
+		  		 	<f:validateDoubleRange minimum="1000" />
+		  		</p:inputText>	
+		  		<p:message for="x"/>
+		  		
+				<p:outputLabel for="y" value="Lata kredytu:"/>
+		  		<p:inputText id="y" value="#{creditBB.y}" 
+		  			required="true" 
+		  			requiredMessage="Brak lat kredytu" 
+		  			converterMessage="Lata kredytu muszą być liczbą całkowitą" 
+		  			validatorMessage="Lata kredytu w przedziale od 1 - 25" >
+		  		 	<f:validateLongRange minimum="1" maximum="25" />
+		  		</p:inputText>
+		  		<p:message for="y"/>
+		  		
+				<p:outputLabel for="z" value="Oprocentowanie:"/>
+				<p:inputText id="z" value="#{creditBB.z}" 
+					required="true" 
+					requiredMessage="Brak oprocentowania"
+					converterMessage="Oprocentowanie musi być liczbą całkowitą" 
+		  			validatorMessage="Oprocentowanie w przedziale od 1 - 100" >
+		  		 	<f:validateLongRange minimum="1" maximum="100"  />
+		  		</p:inputText>
+				<p:message for="z"/>
+				
+				<p:commandButton value="Oblicz" action="#{creditBB.calc()}" update="@form"/>
+				<p:commandButton value="Dodaj (AJAX)" action="#{creditBB.calc_AJAX()}" update="msg"/>
+			</h:panelGrid>
+			<p:messages id="msg" closable="true"/>		
+		</h:form>
 		
+		<h:form>
+			<p:commandLink id="nonAjax" action="#{creditBB.info()}" class="mr-4" ajax="false"
+	                       value="Strona informacyjna"/>
+		</h:form>
 		
-		
-		
-	
-    </p:panel>
-</h:body>
+    	</p:panel>
+    	</ui:define>
+    
+</ui:composition>
+
 </html>
